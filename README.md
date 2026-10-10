@@ -37,6 +37,7 @@ cn-assignment-1/
 │   └── schema.sql         Creates the database and table
 ├── postman/
 │   └── Research-Opportunity-Portal.postman_collection.json
+├── package.json           Root scripts used for deployment
 └── README.md
 ```
 
@@ -68,6 +69,7 @@ Copy `.env.example` to a new file named `.env`, then put your own MySQL password
 
 ```
 DB_HOST=localhost
+DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=your_password_here
 DB_NAME=research_portal
@@ -87,6 +89,27 @@ You should see `Server running on http://localhost:3000`.
 ### 5. Open the application
 
 Go to **http://localhost:3000** in your browser. The Express server serves both the frontend and the API, so nothing else needs to be started.
+
+## Deployment (Railway)
+
+**Live URL:** _add link here_
+
+1. Create a new Railway project and add a **MySQL** database.
+2. Add a service from this GitHub repository (leave the root directory empty). Railway runs `npm install` and `npm start` from the root `package.json`.
+3. In the app service **Variables** tab, add:
+   ```
+   DB_HOST=${{MySQL.MYSQLHOST}}
+   DB_PORT=${{MySQL.MYSQLPORT}}
+   DB_USER=${{MySQL.MYSQLUSER}}
+   DB_PASSWORD=${{MySQL.MYSQLPASSWORD}}
+   DB_NAME=research_portal
+   ```
+4. Load the schema into the Railway database using the public connection details from the MySQL service **Connect** tab:
+   ```
+   mysql -h <public host> -P <public port> -u root -p --protocol=TCP
+   SOURCE path/to/database/schema.sql;
+   ```
+5. In the app service **Settings → Networking**, click **Generate Domain** to get a public URL.
 
 ## Database Table: `opportunities`
 
