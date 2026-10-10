@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Opportunity Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>University Research Opportunity Portal</h1>
+
+    <div id="message" class="message hidden"></div>
+
+    <section class="card">
+      <h2 id="form-title">Add New Opportunity</h2>
+      <form id="opportunity-form" novalidate>
+        <input type="hidden" id="opportunity-id">
+
+        <label for="title">Research Title *</label>
+        <input type="text" id="title">
+
+        <label for="description">Research Description *</label>
+        <textarea id="description" rows="3"></textarea>
+
+        <div class="row">
+          <div>
+            <label for="research_area">Research Area *</label>
+            <input type="text" id="research_area">
+          </div>
+          <div>
+            <label for="faculty_name">Faculty Member's Name *</label>
+            <input type="text" id="faculty_name">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="department">Department *</label>
+            <input type="text" id="department">
+          </div>
+          <div>
+            <label for="required_skills">Required Skills * (comma separated)</label>
+            <input type="text" id="required_skills">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="positions">Available Positions *</label>
+            <input type="number" id="positions" min="1">
+          </div>
+          <div>
+            <label for="deadline">Application Deadline *</label>
+            <input type="date" id="deadline">
+          </div>
+          <div>
+            <label for="status">Status *</label>
+            <select id="status">
+              <option value="Open">Open</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button type="submit" id="save-button">Add Opportunity</button>
+          <button type="button" id="cancel-button" class="secondary hidden">Cancel Edit</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>All Research Opportunities</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Research Area</th>
+            <th>Faculty</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="opportunities-body"></tbody>
+      </table>
+    </section>
+
+    <section class="card hidden" id="details-card">
+      <h2>Opportunity Details</h2>
+      <div id="details"></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
